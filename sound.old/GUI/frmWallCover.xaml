@@ -1,0 +1,56 @@
+﻿<Window x:Class="Sound.frmWallCover"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+         xmlns:converters="clr-namespace:Sound.Core.Converters"
+        Title="Облицювання стін" Height="204" Width="800" 
+        Closing="frmWallCover_Closing"
+        Background="#FFD4D0C8" ResizeMode="NoResize" WindowStyle="SingleBorderWindow" WindowStartupLocation="CenterScreen" ContentRendered="Window_ContentRendered">
+    <StackPanel Margin="10">
+        <StackPanel.Resources>
+            <converters:BooleanToVisible x:Key="boolToVis"/>
+        </StackPanel.Resources>
+        <Label Name="lblWallName">wallName</Label>
+        <StackPanel Orientation="Horizontal" Margin="0,5,0,5">
+            <Label Width="200" FlowDirection="RightToLeft">Облицювання</Label>
+            <ComboBox Name="comboWallCovers" Width="300" SelectedIndex="0" ItemsSource="{Binding}" DisplayMemberPath="name" SelectedValuePath="ROWID" SelectionChanged="comboWallCovers_SelectionChanged" ></ComboBox>
+            <CheckBox Name="checkManualWallCover" Margin="10,5,0,0">Вручну</CheckBox>
+        </StackPanel>
+        <Separator/>
+        <DataGrid AutoGenerateColumns="False" Name="dataGridAbsorbedCoefs" ColumnWidth="43" BorderThickness="0" Height="40" Margin="0,5,0,5" CanUserReorderColumns="False" CanUserResizeColumns="False" CanUserResizeRows="False" CanUserSortColumns="False" Focusable="False" GridLinesVisibility="All" HorizontalScrollBarVisibility="Disabled" IsReadOnly="True"></DataGrid>
+        <Separator/>
+        <StackPanel Orientation="Horizontal" Margin="5,5,5,5">
+            <StackPanel.Resources>
+                <XmlDataProvider x:Key="WallCoverEnumeration" XPath="/Walls/*">
+                    <x:XData>
+                        <Walls xmlns="">
+                            <Wall Content="Підлога першої камнати" Value="Room1Floor" />
+                            <Wall Content="Підлога другої кімнати" Value="Room2Floor" />
+                            <Wall Content="Стеля першої камнати" Value="Room1Seiling" />
+                            <Wall Content="Стеля другої кімнати" Value="Room2Seiling" />
+                            <Wall Content="Задня стіна першої камнати" Value="Room1BackWall" />
+                            <Wall Content="Задня стіна другої кімнати" Value="Room2BackWall" />
+                            <Wall Content="Передня стіна першої камнати" Value="Room1FrontWall" />
+                            <Wall Content="Передня стіна другої камнати" Value="Room2FrontWall" />
+                            <Wall Content="Ліва стіна першої кімнати" Value="Room1LeftWall" />
+                            <Wall Content="Суміжня стіна першої кімнати" Value="Room1SeparateWall" />
+                            <Wall Content="Суміжня стіна другої кімнати" Value="Room2SeparateWall" />
+                            <Wall Content="Права стіна другої кімнати" Value="Room2RightWall" />
+                        </Walls>
+                    </x:XData>
+                </XmlDataProvider>
+            </StackPanel.Resources>
+            <Label>Перейти до:</Label>
+                <ComboBox Name="comboWallCoverEnum" Width="190" ItemsSource="{Binding Source={StaticResource WallCoverEnumeration}}" SelectedValue="Room1Floor" SelectedValuePath="@Value" GotFocus="comboWallCoverEnum_GotFocus">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding XPath=@Content}" />
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+                <Button Name="cmdNext" Width="100" Height="25" Click="cmdOk_Next">Далі ></Button>
+                <Button Name="cmdOk" Width="100" Height="25" Click="cmdOk_Click" Margin="280,0,0,0">OK</Button>
+            
+        </StackPanel>
+        
+    </StackPanel>
+</Window>

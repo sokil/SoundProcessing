@@ -1,0 +1,48 @@
+﻿<Window x:Class="Sound.frmWallCover"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+         xmlns:converters="clr-namespace:Sound.Core.Converters"
+        Title="Облицювання стін." Height="430" Width="950" 
+        Closing="frmWallCover_Closing"
+        Background="#FFD4D0C8" ResizeMode="NoResize" WindowStyle="SingleBorderWindow" WindowStartupLocation="CenterScreen">
+    <StackPanel Margin="10">
+        <StackPanel.Resources>
+            <converters:BooleanToVisible x:Key="boolToVis"/>
+        </StackPanel.Resources>
+        <StackPanel Orientation="Horizontal" Name="panelAbsorb">
+            <StackPanel>
+                <CheckBox Height="15" Name="checkManualWallCover" Checked="checkManualWallCover_Checked" Unchecked="checkManualWallCover_Unchecked">Вручну</CheckBox>
+                <Label Name="lblWallName1"></Label>
+                <ComboBox Name="comboWallCovers1" Width="160" SelectedIndex="0" ItemsSource="{Binding}" DisplayMemberPath="name" SelectedValuePath="ROWID" SelectionChanged="comboWallCovers1_SelectionChanged" ></ComboBox>
+                <Label Name="lblWallName2"></Label>                
+                <ComboBox Name="comboWallCovers2" Width="160" SelectedIndex="0" ItemsSource="{Binding}" DisplayMemberPath="name" SelectedValuePath="ROWID" SelectionChanged="comboWallCovers2_SelectionChanged" ></ComboBox>
+                <Label Name="lblWallName3"></Label>
+                <ComboBox Name="comboWallCovers3" Width="160" SelectedIndex="0" ItemsSource="{Binding}" DisplayMemberPath="name" SelectedValuePath="ROWID" SelectionChanged="comboWallCovers3_SelectionChanged" ></ComboBox>
+                <Label Name="lblWallName4"></Label>
+                <ComboBox Name="comboWallCovers4" Width="160" SelectedIndex="0" ItemsSource="{Binding}" DisplayMemberPath="name" SelectedValuePath="ROWID" SelectionChanged="comboWallCovers4_SelectionChanged" ></ComboBox>
+                <Label Name="lblWallName5"></Label>
+                <ComboBox Name="comboWallCovers5" Width="160" SelectedIndex="0" ItemsSource="{Binding}" DisplayMemberPath="name" SelectedValuePath="ROWID" SelectionChanged="comboWallCovers5_SelectionChanged" ></ComboBox>
+                <Label Name="lblWallName6"></Label>
+                <ComboBox Name="comboWallCovers6" Width="160" SelectedIndex="0" ItemsSource="{Binding}" DisplayMemberPath="name" SelectedValuePath="ROWID" SelectionChanged="comboWallCovers6_SelectionChanged" ></ComboBox>
+            </StackPanel>
+            <StackPanel>
+                <DataGrid AutoGenerateColumns="False" Name="dataGridAbsorbedCoefs" RowHeight="44" ColumnWidth="43" BorderThickness="0" Height="285" Margin="0,5,0,5" CanUserReorderColumns="False" CanUserResizeColumns="False" CanUserResizeRows="False" CanUserSortColumns="False" Focusable="False" GridLinesVisibility="All" HorizontalScrollBarVisibility="Disabled" IsReadOnly="True" IsHitTestVisible="True" SelectionUnit="Cell"></DataGrid>
+            </StackPanel>
+            
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal">
+            <StackPanel Width="160">
+                <CheckBox Height="15" Name="checkManualReverbTime" Checked="checkManualReverbTime_Checked" Unchecked="checkManualReverbTime_Unchecked">Час реверберації</CheckBox>
+            </StackPanel>
+            <StackPanel>
+                <DataGrid IsEnabled ="False" AutoGenerateColumns="False" Name="dataGridReverbTime" RowHeight="44" ColumnWidth="43" BorderThickness="0" Height="40" Margin="0,5,0,5" CanUserReorderColumns="False" CanUserResizeColumns="False" CanUserResizeRows="False" CanUserSortColumns="False" Focusable="False" GridLinesVisibility="All" HorizontalScrollBarVisibility="Disabled" IsReadOnly="False" IsHitTestVisible="True" SelectionUnit="Cell"></DataGrid>
+            </StackPanel>
+        </StackPanel>
+        
+        <StackPanel Orientation="Horizontal" FlowDirection="RightToLeft" Margin="0,0,20,0">
+            <Button Name="cmdOk" Width="100" Height="25" Click="cmdOk_Click">OK</Button>
+        </StackPanel>
+        
+    </StackPanel>
+</Window>

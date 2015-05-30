@@ -1,0 +1,89 @@
+﻿<Window x:Class="Sound.frmResults"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:wfi="clr-namespace:System.Windows.Forms.Integration;assembly=WindowsFormsIntegration"
+        xmlns:wf="clr-namespace:System.Windows.Forms;assembly=System.Windows.Forms"
+        xmlns:dvc="clr-namespace:System.Windows.Forms.DataVisualization.Charting;assembly=System.Windows.Forms.DataVisualization"
+        Title="Результати" Height="500" Width="904"
+        Background="#FFD4D0C8" ResizeMode="NoResize">
+    <Grid>
+        <StackPanel>
+            <StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <GroupBox Width="170" Margin="5">
+                        <GroupBox.Header>
+                            <Label>Перша кімната:</Label>
+                        </GroupBox.Header>
+                        <StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <Label Width="120" HorizontalContentAlignment="Right">Рівень сигналу (дБ):</Label>
+                                <Label Name="lblRoom1SignalLevel">0</Label>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <Label Width="120" HorizontalContentAlignment="Right">Рівень шуму (дБ):</Label>
+                                <Label Name="lblRoom1NoiseLevel">0</Label>
+                            </StackPanel>
+                        </StackPanel>
+                    </GroupBox>
+                    <GroupBox Width="170" Margin="5">
+                        <GroupBox.Header>
+                            <Label>Друга кімната:</Label>
+                        </GroupBox.Header>
+                        <StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <Label Width="120" HorizontalContentAlignment="Right">Рівень шуму (дБ):</Label>
+                                <Label Name="lblRoom2NoiseLevel">0</Label>
+                            </StackPanel>
+                        </StackPanel>
+                    </GroupBox>
+                    <GroupBox Margin="5">
+                        <GroupBox.Header>
+                            <Label>Параметри</Label>
+                            
+                        </GroupBox.Header>
+                        <StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <Label>Розділяюча перегородка:</Label>
+                                <Label Name="lblSeparateWallParams">...</Label>
+                            </StackPanel>
+                        </StackPanel>
+                    </GroupBox>
+                    <StackPanel Margin="5">
+                        
+                    </StackPanel>
+                </StackPanel>
+                
+            </StackPanel>
+
+            <TabControl Margin="5">
+                <TabItem Header="З фланговою передачею">
+                    <StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="5">
+                            <Label Width="110">Розбірливість мови:</Label>
+                            <Label Name="lblWithFlankingArticulation">...</Label>
+                            <Label HorizontalContentAlignment="Right">Рівень сигналу другої кімнати(дБ):</Label>
+                            <Label Name="lblRoom2SignalLevelWithFlankingTransmit">...</Label>
+                        </StackPanel>
+                        <WindowsFormsHost Height="300">
+                            <dvc:Chart x:Name="chartWithFlanking" BackColor="White" Height="300" />
+                        </WindowsFormsHost>
+                    </StackPanel>
+                </TabItem>
+                <TabItem Header="Без флангової передачі">
+                    <StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="5">
+                            <Label Width="110">Розбірливість мови:</Label>
+                            <Label Name="lblWithoutFlankingArticulation">...</Label>
+                            <Label HorizontalContentAlignment="Right">Рівень сигналу другої кімнати(дБ):</Label>
+                            <Label Name="lblRoom2SignalLevelWithoutFlankingTransmit">...</Label>
+                        </StackPanel>
+                        <WindowsFormsHost Height="300">
+                            <dvc:Chart x:Name="chartWithoutFlanking" BackColor="White" Height="300" />
+                        </WindowsFormsHost>
+                    </StackPanel>
+                </TabItem>
+            </TabControl>
+            
+        </StackPanel>
+    </Grid>
+</Window>

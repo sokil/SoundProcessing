@@ -1,0 +1,240 @@
+﻿<Window x:Class="Sound.frmRoom"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:converters="clr-namespace:Sound.Core.Converters"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Розбірливість мови в суміжному приміщенні." Height="649" Width="876" Closed="frmRoom_Closed"
+        Background="#FFD4D0C8" ResizeMode="NoResize" Loaded="frmRoom_Loaded">
+    <StackPanel>
+        <StackPanel.Resources>
+            <converters:BooleanToVisible x:Key="boolToVis"/>
+            <XmlDataProvider x:Key="Room1SignalTypes" XPath="/Room1SignalTypes/*">
+                <x:XData>
+                    <Room1SignalTypes xmlns="">
+                        <Type Content="Мова" Value="0"/>
+                        <Type Content="Білий" Value="1"/>
+                        <Type Content="Рожевий" Value="2"/>
+                        <Type Content="Коричневий" Value="3"/>
+                    </Room1SignalTypes>
+                </x:XData>
+            </XmlDataProvider>
+        </StackPanel.Resources>
+
+        <Menu IsMainMenu="True">
+            <MenuItem Header="_Файл">
+                <MenuItem Header="_Вихід" Name="mnuFileExit" Click="mnuFileExit_Click"></MenuItem>
+            </MenuItem>
+            <MenuItem Header="_Допомога">
+                <MenuItem Header="_Про програму"></MenuItem>
+            </MenuItem>
+        </Menu>
+        <Separator/>
+        <StackPanel Orientation="Horizontal" Margin="0,5,0,5">
+            <StackPanel Width="250" Margin="10,0,0,0">
+                <GroupBox>
+                    <GroupBox.Header>
+                        <Label>Перша кімната</Label>
+                    </GroupBox.Header>
+                    <StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0,5,0,0" HorizontalAlignment="Right">
+                            <Label Width="80" FlowDirection="RightToLeft">Ширина, м</Label>
+                            <TextBox Width="100" Text="3" Name="txtRoom1Width" TextChanged="txtRoom1Width_TextChanged"></TextBox>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0,5,0,0" HorizontalAlignment="Right">
+                            <Label Width="80" FlowDirection="RightToLeft">Довжина, м</Label>
+                            <TextBox Width="100" Text="3" Name="txtRoom1Length" TextChanged="txtRoom1Length_TextChanged"></TextBox>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0,5,0,0" HorizontalAlignment="Right">
+                            <Label Width="80" FlowDirection="RightToLeft">Висота, м</Label>
+                            <TextBox Width="100" Text="3" Name="txtRoom1Height" TextChanged="txtRoom1Height_TextChanged"></TextBox>
+                        </StackPanel>
+
+                        <Label HorizontalAlignment="Center" Margin="0,5,0,0">Характер корисного сигналу</Label>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
+                            <ComboBox Name="chkRoom1SignalType" ItemsSource="{Binding Source={StaticResource Room1SignalTypes}}" SelectedValue="0" SelectedValuePath="@Value" Width="100" Height="20">
+                                <ComboBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding XPath=@Content}" />
+                                    </DataTemplate>
+                                </ComboBox.ItemTemplate>
+                            </ComboBox>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0,5,0,0" HorizontalAlignment="Right">
+                            <Label Width="172" FlowDirection="RightToLeft">Рівень корисного сигналу, дб</Label>
+                            <TextBox Name="txtUsableRoom1SignalLevel" Text="70" Width="70"></TextBox>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0,5,0,0" HorizontalAlignment="Right">
+                            <Label HorizontalContentAlignment="Right">Облицювання стін</Label>
+                            <Button Width="86" Margin="5,0,0,0" Click="btnOpenRoom1WallCoverWindow_Click" Name="btnRoom1OpenWallCoverWindow">Встановити</Button>
+                        </StackPanel>
+                    </StackPanel>
+                </GroupBox>
+                <GroupBox>
+                    <GroupBox.Header>
+                        <Label>Друга кімната</Label>
+                    </GroupBox.Header>
+                    <StackPanel>
+
+                        <StackPanel Orientation="Horizontal" Margin="0,5,0,0" HorizontalAlignment="Right">
+                            <Label Width="80" FlowDirection="RightToLeft">Ширина, м</Label>
+                            <TextBox Width="100" Text="3" Name="txtRoom2Width" TextChanged="txtRoom2Width_TextChanged"></TextBox>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0,5,0,0" HorizontalAlignment="Right">
+                            <Label Width="80" FlowDirection="RightToLeft">Довжина, м</Label>
+                            <TextBox Width="100" Text="3" Name="txtRoom2Length" TextChanged="txtRoom2Length_TextChanged"></TextBox>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0,5,0,0" HorizontalAlignment="Right">
+                            <Label Width="80" FlowDirection="RightToLeft">Висота, м</Label>
+                            <TextBox Width="100" Text="3" Name="txtRoom2Height" TextChanged="txtRoom2Height_TextChanged"></TextBox>
+                        </StackPanel>
+
+                        <Label HorizontalAlignment="Center" Margin="0,5,0,0">Характер шуму</Label>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
+                            <ComboBox Name="chkRoom2NoizeType" ItemsSource="{Binding Source={StaticResource Room1SignalTypes}}" SelectedValue="0" SelectedValuePath="@Value" Width="100" Height="20">
+                                <ComboBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding XPath=@Content}" />
+                                    </DataTemplate>
+                                </ComboBox.ItemTemplate>
+                            </ComboBox>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0,5,0,0" HorizontalAlignment="Right">
+                            <Label Width="144" FlowDirection="RightToLeft">Рівень шуму</Label>
+                            <TextBox Width="70" Name="txtRoom2NoiseLevel" Text="30"></TextBox>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0,5,0,0" HorizontalAlignment="Right">
+                            <Label HorizontalContentAlignment="Right">Облицювання стін</Label>
+                            <Button Width="86" Margin="5,0,0,0" Click="btnOpenRoom2WallCoverWindow_Click" Name="btnRoom2OpenWallCoverWindow">Встановити</Button>
+                        </StackPanel>
+                    </StackPanel>
+                </GroupBox>
+            </StackPanel>
+            <StackPanel Margin="10,0,10,0">
+                <GroupBox>
+                    <GroupBox.Header>
+                        <Label>Кімнати</Label>
+                    </GroupBox.Header>
+                    <StackPanel>
+                        <Canvas Background="white" Name="canvasRoom"  Height="339" Width="570" Margin="0,0,0,10">
+                            <!-- floor -->
+                            <Rectangle Name="rectRoom1Floor" Height="100" Width="200" Stroke="Black" StrokeThickness="1" Canvas.Left="100" Canvas.Top="200" StrokeDashArray="5,5">
+                                <Rectangle.RenderTransform>
+                                    <SkewTransform CenterX="50" CenterY="50" AngleX="-45" AngleY="0" />
+                                </Rectangle.RenderTransform>
+                            </Rectangle>
+                            <TextBlock Canvas.Left="150" Canvas.Top="310" Name="lblRoom1Width">3</TextBlock>
+
+                            <Rectangle Name="rectRoom2Floor" Height="100" Width="200" Stroke="Black" StrokeThickness="1" Canvas.Left="300" Canvas.Top="200" StrokeDashArray="5,5">
+                                <Rectangle.RenderTransform>
+                                    <SkewTransform CenterX="50" CenterY="50" AngleX="-45" AngleY="0" />
+                                </Rectangle.RenderTransform>
+                            </Rectangle>
+                            <TextBlock Canvas.Left="340" Canvas.Top="310" Name="lblRoom2Width">3</TextBlock>
+
+                            <!-- seiling -->
+
+                            <Rectangle Name="rectRoom1Seiling"  Height="100" Width="200" Stroke="Black" StrokeThickness="1" Canvas.Left="100" Canvas.Top="50">
+                                <Rectangle.RenderTransform>
+                                    <SkewTransform CenterX="50" CenterY="50" AngleX="-45" AngleY="0" />
+                                </Rectangle.RenderTransform>
+                            </Rectangle>
+                            <TextBlock Canvas.Left="60" Canvas.Top="90" Name="lblRoom1Length" FlowDirection="RightToLeft" Width="32">3</TextBlock>
+
+                            <Rectangle Name="rectRoom2Seiling" Height="100" Width="200" Stroke="Black" StrokeThickness="1" Canvas.Left="300" Canvas.Top="50">
+                                <Rectangle.RenderTransform>
+                                    <SkewTransform CenterX="50" CenterY="50" AngleX="-45" AngleY="0" />
+                                </Rectangle.RenderTransform>
+                            </Rectangle>
+                            <TextBlock Canvas.Left="460" Canvas.Top="90" Name="lblRoom2Length" FlowDirection="RightToLeft" Width="31">3</TextBlock>
+
+                            <!-- back wall -->
+
+                            <Rectangle  Name="rectRoom1BackWall" Height="150" Width="200" Stroke="Black" StrokeThickness="1" Canvas.Left="150" Canvas.Top="50" StrokeDashArray="5,5">
+                            </Rectangle>
+
+                            <Rectangle Name="rectRoom2BackWall" Height="150" Width="200" Stroke="Black" StrokeThickness="1" Canvas.Left="350" Canvas.Top="50" StrokeDashArray="5,5">
+                            </Rectangle>
+
+                            <!-- left wall -->
+                            <Rectangle  Name="rectRoom1LeftWall" Height="150" Width="100" Stroke="Black" StrokeThickness="1" Canvas.Left="50" Canvas.Top="100" StrokeDashArray="5,5">
+                                <Rectangle.RenderTransform>
+                                    <SkewTransform CenterX="50" CenterY="50" AngleX="0" AngleY="-45" />
+                                </Rectangle.RenderTransform>
+                            </Rectangle>
+                            <TextBlock Canvas.Left="10" Canvas.Top="220" Name="lblRoom1Height" FlowDirection="RightToLeft" Width="34">3</TextBlock>
+
+                            <!-- separated wall -->
+                            <Rectangle  Name="rectSeparateWall" Height="150" Width="100" Stroke="Black" StrokeThickness="1" Canvas.Left="250" Canvas.Top="100" StrokeDashArray="5,5" >
+                                <Rectangle.RenderTransform>
+                                    <SkewTransform CenterX="50" CenterY="50" AngleX="0" AngleY="-45" />
+                                </Rectangle.RenderTransform>
+                            </Rectangle>
+
+                            <!-- right wall -->
+                            <Rectangle  Name="rectRoom2RightWall" Height="150" Width="100" Stroke="Black" StrokeThickness="1" Canvas.Left="450" Canvas.Top="100">
+                                <Rectangle.RenderTransform>
+                                    <SkewTransform CenterX="50" CenterY="50" AngleX="0" AngleY="-45" />
+                                </Rectangle.RenderTransform>
+                            </Rectangle>
+                            <TextBlock Canvas.Left="410" Canvas.Top="220" Name="lblRoom2Height" FlowDirection="RightToLeft" Width="32">3</TextBlock>
+
+                            <!-- front wall -->
+
+                            <Rectangle  Name="rectRoom1FrontWall" Height="150" Width="200" Stroke="Black" StrokeThickness="1" Canvas.Left="50" Canvas.Top="150">
+                            </Rectangle>
+
+                            <Rectangle  Name="rectRoom2FrontWall" Height="150" Width="200" Stroke="Black" StrokeThickness="1" Canvas.Left="250" Canvas.Top="150">
+                            </Rectangle>
+
+                            <Line Name="lineTopConnection" X1="350" Y1="50" X2="250" Y2="150" Stroke="Red" StrokeThickness="4" Visibility="{Binding Path=IsChecked, ElementName=chkTopConnection, Converter={StaticResource boolToVis}}"></Line>
+                            <Line Name="lineBackConnection" X1="350" Y1="50" X2="350" Y2="200" Stroke="Red" StrokeThickness="4" Visibility="{Binding Path=IsChecked, ElementName=chkBackConnection, Converter={StaticResource boolToVis}}"></Line>
+                            <Line Name="lineBottomConnection" X1="350" Y1="200" X2="250" Y2="300" Stroke="Red" StrokeThickness="4" Visibility="{Binding Path=IsChecked, ElementName=chkBottomConnection, Converter={StaticResource boolToVis}}"></Line>
+                            <Line Name="lineFrontConnection" X1="250" Y1="150" X2="250" Y2="300" Stroke="Red" StrokeThickness="4" Visibility="{Binding Path=IsChecked, ElementName=chkFrontConnection, Converter={StaticResource boolToVis}}"></Line>
+
+                        </Canvas>
+                        <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
+                            <Label Width="200" FlowDirection="RightToLeft">Індекс ізоляції повітряного шуму</Label>
+                            <Button Width="86" Margin="5,0,0,0" Click="btnOpenFramePropertiesWindow_Click" Name="btnOpenFramePropertiesWindow">Встановити</Button>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
+                            <Label HorizontalContentAlignment="Right" Width="200">Гнучкі з'єднання</Label>
+                            <StackPanel Orientation="Horizontal" Margin="5,5,0,0">
+                                <CheckBox Margin="0,0,5,0" Name="chkTopConnection" Checked="chkTopConnection_Checked" Unchecked="chkTopConnection_Unchecked">Стеля</CheckBox>
+                                <CheckBox Margin="0,0,5,0" Name="chkBackConnection" Checked="chkBackConnection_Checked" Unchecked="chkBackConnection_Unchecked">Задня стіна</CheckBox>
+                                <CheckBox Margin="0,0,5,0" Name="chkBottomConnection" Checked="chkBottomConnection_Checked" Unchecked="chkBottomConnection_Unchecked">Підлога</CheckBox>
+                                <CheckBox Margin="0,0,5,0" Name="chkFrontConnection" Checked="chkFrontConnection_Checked" Unchecked="chkFrontConnection_Unchecked">Передня стіна</CheckBox>
+                            </StackPanel>
+                        </StackPanel>
+                        <Separator Margin="0,5,0,0" />
+                        <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
+                            <StackPanel.Resources>
+                                <XmlDataProvider x:Key="resFrequncyRange" XPath="/Ranges/*">
+                                    <x:XData>
+                                        <Ranges xmlns="">
+                                            <Type Content="Октавний" Value="6" />
+                                            <Type Content="Третинно-октавний" Value="16" />
+                                        </Ranges>
+                                    </x:XData>
+                                </XmlDataProvider>
+                            </StackPanel.Resources>
+                            <Label Width="200" FlowDirection="RightToLeft">Елементів гребінки фільтрів</Label>
+                            <ComboBox ItemsSource="{Binding Source={StaticResource resFrequncyRange}}" SelectedValuePath="@Value" SelectedIndex="1" Width="140" Name="comboElementsInFilterChanin" SelectionChanged="comboElementsInFilterChanin_SelectionChanged">
+                                <ComboBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding XPath=@Content}" />
+                                    </DataTemplate>
+                                </ComboBox.ItemTemplate>
+                            </ComboBox>
+                        </StackPanel>
+                    </StackPanel>
+                    
+                    
+                </GroupBox>
+            </StackPanel>
+        </StackPanel>
+        <Separator />
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Height="30"  Margin="0,10,10,0">
+            <Button Width="200" Height="30" Margin="10,0,0,0" Name="cmdCalculate" Click="cmdCalculate_Click">Розрахувати</Button>    
+        </StackPanel>
+        
+    </StackPanel>
+</Window>
